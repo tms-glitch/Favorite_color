@@ -58,16 +58,16 @@
   <div class="card">
     <h2>Xếp hạng màu yêu thích 🎨</h2>
 
-    <label>Tên của bạn</label>
+    <label>Tên của bạn ^_^</label>
     <input type="text" id="name">
 
-    <label>Hạng 1</label>
+    <label>Hạng 1 (～￣▽￣)～</label>
     <input type="color" id="c1" value="#ff6b6b">
 
-    <label>Hạng 2</label>
+    <label>Hạng 2 ( •̀ ω •́ )✧</label>
     <input type="color" id="c2" value="#4dabf7">
 
-    <label>Hạng 3</label>
+    <label>Hạng 3 (●ˇ∀ˇ●)</label>
     <input type="color" id="c3" value="#51cf66">
 
     <button onclick="send()">Gửi</button>
@@ -82,7 +82,7 @@ function send() {
   const c3 = document.getElementById("c3").value;
 
   if (!name) {
-    alert("Nhập tên đã : ) ");
+    alert("Nhập tên đã (ง •_•)ง ");
     return;
   }
 
@@ -101,7 +101,7 @@ function send() {
     body: data
   });
 
-  document.getElementById("done").innerText = "Đã gửi cho t";
+  document.getElementById("done").innerText = "Đã gửi thàn côn （￣︶￣）↗　";
   document.body.style.background = c1;
 }
 </script>
