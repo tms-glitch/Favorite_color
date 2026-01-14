@@ -12,7 +12,6 @@
       align-items: center;
       justify-content: center;
       background: linear-gradient(135deg,#667eea,#764ba2);
-      transition: background 0.6s;
     }
     .card {
       background: #fff;
@@ -54,26 +53,26 @@
     }
   </style>
 </head>
+
 <body>
+  <div class="card">
+    <h2>Xếp hạng màu yêu thích 🎨</h2>
 
-<div class="card">
-  <h2>Xếp hạng màu yêu thích 🎨</h2>
+    <label>Tên của bạn</label>
+    <input type="text" id="name">
 
-  <label>Tên của bạn</label>
-  <input type="text" id="name" placeholder="Nhập tên vào đêy">
+    <label>Hạng 1</label>
+    <input type="color" id="c1" value="#ff6b6b">
 
-  <label>Hạng 1</label>
-  <input type="color" id="c1" value="#ff6b6b">
+    <label>Hạng 2</label>
+    <input type="color" id="c2" value="#4dabf7">
 
-  <label>Hạng 2</label>
-  <input type="color" id="c2" value="#4dabf7">
+    <label>Hạng 3</label>
+    <input type="color" id="c3" value="#51cf66">
 
-  <label>Hạng 3</label>
-  <input type="color" id="c3" value="#51cf66">
-
-  <button onclick="send()">Gửi</button>
-  <div class="done" id="done"></div>
-</div>
+    <button onclick="send()">Gửi</button>
+    <div class="done" id="done"></div>
+  </div>
 
 <script>
 function send() {
@@ -83,25 +82,28 @@ function send() {
   const c3 = document.getElementById("c3").value;
 
   if (!name) {
-    alert("Nhập cmn tên");
+    alert("Nhập tên đã : ) ");
     return;
   }
 
+  const formURL =
+    "https://docs.google.com/forms/d/e/1FAIpQLSdy6PlcG4P7X6BXwwX_gRL5UoxBJu3YbjBL0_YVVUlyOAl_hg/formResponse";
+
+  const data = new FormData();
+  data.append("entry.1352520964", name);
+  data.append("entry.902250821", c1);
+  data.append("entry.365378286", c2);
+  data.append("entry.668242123", c3);
+
+  fetch(formURL, {
+    method: "POST",
+    mode: "no-cors",
+    body: data
+  });
+
+  document.getElementById("done").innerText = "Đã gửi cho t";
   document.body.style.background = c1;
-
-https://docs.google.com/forms/d/e/1FAIpQLSdy6PlcG4P7X6BXwwX_gRL5UoxBJu3YbjBL0_YVVUlyOAl_hg/viewform?usp=pp_url&entry.1352520964=a&entry.902250821=a&entry.365378286=a&entry.668242123=a  const formURL =
-`PASTE_PREFILL_LINK_HERE`
-    .replace("Sơn", encodeURIComponent(name))
-    .replace("%230111", encodeURIComponent(c1))
-    .replace("COLOR2", encodeURIComponent(c2))
-    .replace("COLOR3", encodeURIComponent(c3));
-
-  fetch(formURL, { mode: "no-cors" });
-
-  document.getElementById("done").innerText =
-    "Đã gửi thành công, then kiu";
 }
 </script>
-
 </body>
 </html>
