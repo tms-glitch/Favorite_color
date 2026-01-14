@@ -2,11 +2,146 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <title>Màu yêu thích</title>
+  <title>Xếp hạng màu yêu thích</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.6s ease;
+    }
+
+    .card {
+      background: white;
+      padding: 32px;
+      border-radius: 18px;
+      width: 340px;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+    }
+
+    h1 {
+      font-size: 22px;
+      margin-bottom: 6px;
+    }
+
+    p {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 18px;
+    }
+
+    .color-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      gap: 10px;
+    }
+
+    .rank {
+      font-weight: 600;
+      width: 60px;
+      text-align: left;
+    }
+
+    input[type="color"] {
+      flex: 1;
+      height: 42px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button {
+      margin-top: 18px;
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 12px;
+      background: #667eea;
+      color: white;
+      font-size: 15px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+
+    .result {
+      margin-top: 18px;
+      font-size: 14px;
+      text-align: left;
+    }
+
+    .result div {
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .preview {
+      width: 18px;
+      height: 18px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+  </style>
 </head>
 <body>
-  <h1>🎉 GitHub Pages đã hoạt động</h1>
-  <p>Màu bạn thích là gì?</p>
-  <input type="color">
+
+  <div class="card">
+    <h1>Xếp hạng màu yêu thích</h1>
+    <p>Chọn 3 màu và sắp xếp theo mức độ bạn thích 🎨</p>
+
+    <div class="color-row">
+      <div class="rank">#1</div>
+      <input type="color" id="color1" value="#ff6b6b">
+    </div>
+
+    <div class="color-row">
+      <div class="rank">#2</div>
+      <input type="color" id="color2" value="#4dabf7">
+    </div>
+
+    <div class="color-row">
+      <div class="rank">#3</div>
+      <input type="color" id="color3" value="#51cf66">
+    </div>
+
+    <button onclick="submitColors()">Xác nhận</button>
+
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    function submitColors() {
+      const c1 = document.getElementById("color1").value;
+      const c2 = document.getElementById("color2").value;
+      const c3 = document.getElementById("color3").value;
+
+      // Đổi nền theo màu hạng 1
+      document.body.style.background = c1;
+
+      document.getElementById("result").innerHTML = `
+        <div><div class="preview" style="background:${c1}"></div> Hạng 1: ${c1}</div>
+        <div><div class="preview" style="background:${c2}"></div> Hạng 2: ${c2}</div>
+        <div><div class="preview" style="background:${c3}"></div> Hạng 3: ${c3}</div>
+      `;
+    }
+  </script>
+
 </body>
 </html>
