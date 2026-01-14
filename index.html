@@ -23,38 +23,42 @@
       background: white;
       padding: 32px;
       border-radius: 18px;
-      width: 340px;
-      text-align: center;
+      width: 360px;
       box-shadow: 0 20px 40px rgba(0,0,0,0.25);
     }
 
     h1 {
+      text-align: center;
+      margin-top: 0;
       font-size: 22px;
-      margin-bottom: 6px;
     }
 
     p {
+      text-align: center;
       font-size: 14px;
       color: #555;
-      margin-bottom: 18px;
+      margin-bottom: 20px;
     }
 
-    .color-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 14px;
-      gap: 10px;
-    }
-
-    .rank {
+    label {
+      font-size: 13px;
       font-weight: 600;
-      width: 60px;
-      text-align: left;
+    }
+
+    input[type="text"],
+    input[type="color"] {
+      width: 100%;
+      margin-top: 6px;
+      margin-bottom: 14px;
+    }
+
+    input[type="text"] {
+      padding: 8px 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
     }
 
     input[type="color"] {
-      flex: 1;
       height: 42px;
       border: none;
       border-radius: 8px;
@@ -62,7 +66,7 @@
     }
 
     button {
-      margin-top: 18px;
+      margin-top: 10px;
       width: 100%;
       padding: 12px;
       border: none;
@@ -71,32 +75,17 @@
       color: white;
       font-size: 15px;
       cursor: pointer;
-      transition: 0.3s;
     }
 
     button:hover {
       opacity: 0.9;
-      transform: translateY(-1px);
     }
 
-    .result {
-      margin-top: 18px;
+    .done {
+      margin-top: 14px;
+      text-align: center;
       font-size: 14px;
-      text-align: left;
-    }
-
-    .result div {
-      margin-bottom: 6px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .preview {
-      width: 18px;
-      height: 18px;
-      border-radius: 4px;
-      border: 1px solid #ccc;
+      font-weight: 500;
     }
   </style>
 </head>
@@ -104,42 +93,50 @@
 
   <div class="card">
     <h1>Xếp hạng màu yêu thích</h1>
-    <p>Chọn 3 màu và sắp xếp theo mức độ bạn thích 🎨</p>
+    <p>Điền tên và chọn 3 màu bạn thích nhất 🎨</p>
 
-    <div class="color-row">
-      <div class="rank">#1</div>
-      <input type="color" id="color1" value="#ff6b6b">
-    </div>
+    <label>Tên của bạn</label>
+    <input type="text" id="name" placeholder="Nhập tên">
 
-    <div class="color-row">
-      <div class="rank">#2</div>
-      <input type="color" id="color2" value="#4dabf7">
-    </div>
+    <label>Hạng 1</label>
+    <input type="color" id="c1" value="#ff6b6b">
 
-    <div class="color-row">
-      <div class="rank">#3</div>
-      <input type="color" id="color3" value="#51cf66">
-    </div>
+    <label>Hạng 2</label>
+    <input type="color" id="c2" value="#4dabf7">
 
-    <button onclick="submitColors()">Xác nhận</button>
+    <label>Hạng 3</label>
+    <input type="color" id="c3" value="#51cf66">
 
-    <div class="result" id="result"></div>
+    <button onclick="sendForm()">Gửi</button>
+
+    <div class="done" id="done"></div>
   </div>
 
   <script>
-    function submitColors() {
-      const c1 = document.getElementById("color1").value;
-      const c2 = document.getElementById("color2").value;
-      const c3 = document.getElementById("color3").value;
+    function sendForm() {
+      const name = encodeURIComponent(document.getElementById("name").value.trim());
+      const c1 = encodeURIComponent(document.getElementById("c1").value);
+      const c2 = encodeURIComponent(document.getElementById("c2").value);
+      const c3 = encodeURIComponent(document.getElementById("c3").value);
 
-      // Đổi nền theo màu hạng 1
+      if (!name) {
+        alert("Vui lòng nhập tên");
+        return;
+      }
+
       document.body.style.background = c1;
 
-      document.getElementById("result").innerHTML = `
-        <div><div class="preview" style="background:${c1}"></div> Hạng 1: ${c1}</div>
-        <div><div class="preview" style="background:${c2}"></div> Hạng 2: ${c2}</div>
-        <div><div class="preview" style="background:${c3}"></div> Hạng 3: ${c3}</div>
-      `;
+      https://docs.google.com/forms/d/e/1FAIpQLSdy6PlcG4P7X6BXwwX_gRL5UoxBJu3YbjBL0_YVVUlyOAl_hg/viewform?usp=pp_url&entry.1352520964=S%C6%A1n&entry.902250821=%230111
+      const formURL = `PASTE_GOOGLE_FORM_PREFILL_LINK_HERE`
+        .replace("test", name)
+        .replace("%23ff0000", c1)
+        .replace("%2300ff00", c2)
+        .replace("%230000ff", c3);
+
+      fetch(formURL, { mode: "no-cors" });
+
+      document.getElementById("done").innerText =
+        "Đã gửi thành công 💌 Cảm ơn bạn!";
     }
   </script>
 
