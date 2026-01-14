@@ -60,7 +60,7 @@
   <h2>Xếp hạng màu yêu thích 🎨</h2>
 
   <label>Tên của bạn</label>
-  <input type="text" id="name" placeholder="Nhập tên">
+  <input type="text" id="name" placeholder="Nhập tên vào đêy">
 
   <label>Hạng 1</label>
   <input type="color" id="c1" value="#ff6b6b">
@@ -83,14 +83,13 @@ function send() {
   const c3 = document.getElementById("c3").value;
 
   if (!name) {
-    alert("Vui lòng nhập tên");
+    alert("Nhập cmn tên");
     return;
   }
 
   document.body.style.background = c1;
 
-  // 🔴 DÁN LINK PREFILL GOOGLE FORM (ĐỦ 3 entry) VÀO ĐÂY
-  const formURL =
+https://docs.google.com/forms/d/e/1FAIpQLSdy6PlcG4P7X6BXwwX_gRL5UoxBJu3YbjBL0_YVVUlyOAl_hg/viewform?usp=pp_url&entry.1352520964=a&entry.902250821=a&entry.365378286=a&entry.668242123=a  const formURL =
 `PASTE_PREFILL_LINK_HERE`
     .replace("Sơn", encodeURIComponent(name))
     .replace("%230111", encodeURIComponent(c1))
@@ -100,7 +99,7 @@ function send() {
   fetch(formURL, { mode: "no-cors" });
 
   document.getElementById("done").innerText =
-    "Đã gửi thành công 💌 Cảm ơn bạn!";
+    "Đã gửi thành công, then kiu";
 }
 </script>
 
